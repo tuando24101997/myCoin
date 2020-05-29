@@ -32,7 +32,7 @@ function App() {
   // Khai bao wallet active
   const [walletActive, setWalletActive] = useState(0);
 
-  // Function
+  // Function create wallet
   function getValueFormCreate(value){
     const numberWalet = wallet.length;
     const nameValue = value.name;
@@ -44,38 +44,49 @@ function App() {
       transfer: 0,
       recieved: 0
     }
-    
     var newListWallet = [...wallet];
     newListWallet.push(newWallet);
-    
     setWallet(newListWallet);
     setWalletActive(numberWalet);
   }
 
-  //Function
+  //Function change wallet
   function getIdWallet(value){
-    //console.log(value);
     setWalletActive(value.newId);
   }
 
+  // Function change status (connected/disconnected)
+  function getStatusWallet(value){
+    console.log(value);
+    const newWallet = [...wallet];
+    newWallet[value.idForm].status = !newWallet[value.idForm].status;
+    setWallet(newWallet);
+  }
+
+  function getSendCoinWallet(value){
+    console.log(value);
+  }
+
   return (
-      <div className="App">
-        <div>
-          <h1 className="titleName mt-3 mb-4">MY COIN</h1>
-          <div className="container">
-            <div className="row">
-              <CardLeft 
-                myWallet={wallet[walletActive]} 
-                wallets={wallet}
-                wActive={walletActive}
-                getFormCreate={getValueFormCreate}
-                getIdChangeWallet={getIdWallet}
-              />
-              <CardRight blocks={block} wActive={wallet[walletActive]} />
-            </div>
+    <div className="App">
+      <div>
+        <h1 className="titleName mt-3 mb-4">MY COIN</h1>
+        <div className="container">
+          <div className="row">
+            <CardLeft 
+              myWallet={wallet[walletActive]} 
+              wallets={wallet}
+              wActive={walletActive}
+              getFormCreate={getValueFormCreate}
+              getIdChangeWallet={getIdWallet}
+              getStatus={getStatusWallet}
+              getSendCoin={getSendCoinWallet}
+            />
+            <CardRight blocks={block} wActive={wallet[walletActive]} />
           </div>
         </div>
       </div>
+    </div>
 );
 }
 

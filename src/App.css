@@ -171,7 +171,7 @@
 }
 
 .active{
-	background-color: #ececec;
+	background-color: #a0a0a0;
 }
 
 .cardcreatewallet{
@@ -184,4 +184,9 @@
 
 .andi{
 	display: none;
+}
+
+.txtNoti{
+	color: red;
+	font-weight: 500;
 }

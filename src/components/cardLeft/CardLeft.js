@@ -2,8 +2,18 @@ import React, { useState } from 'react';
 
 function CardLeft(props) {
 
-    const {myWallet, wallets, getFormCreate, wActive, getIdChangeWallet} = props;
+    const {
+        myWallet, 
+        wallets, 
+        getFormCreate, 
+        wActive, 
+        getIdChangeWallet, 
+        getStatus, 
+        getSendCoin
+    } = props;
     const [valueForm, setValueForm] = useState('');
+    const [sendCoinForm, setSendCointForm] = useState(0);
+    const [idSend, setIdCoin] = useState(0);
 
     function handleFormCreateChange(e){
         setValueForm(e.target.value);    
@@ -28,6 +38,32 @@ function CardLeft(props) {
 
     }
 
+    function handleStatusClick(id){
+        const valueForm = {
+            idForm: id
+        }
+        getStatus(valueForm);
+    }
+
+    function handleChangeSendCoin(e){
+        setSendCointForm(e.target.value);
+    }
+
+    function handleChangeIdSendCoin(e){
+        setIdCoin(e.target.value);
+    }
+
+    function handleFormSendCoinSubmit(e){
+        e.preventDefault();
+        const formValue = {
+            id: Math.floor(idSend),
+            coin: Math.floor(sendCoinForm)
+        }
+        setSendCointForm(0);
+        setIdCoin(0);
+        getSendCoin(formValue)
+    }
+
     return (
         <div className="col-4">
 
@@ -43,7 +79,10 @@ function CardLeft(props) {
                     </div>
                     <div className="card-content-small">
                         <span className="card-content-name">Status</span>
-                        <span className={myWallet.status === true?"txtstatus":"txtstatusdis"}>
+                        <span 
+                            className={myWallet.status === true?"txtstatus":"txtstatusdis"}
+                            onClick={()=>handleStatusClick(myWallet.id)}
+                        >
                             {myWallet.status === true?"Connected":"Disconnected"}
                         </span>
                     </div>						    
@@ -61,26 +100,44 @@ function CardLeft(props) {
                             <i style={{cursor: 'pointer'}} className="fas fa-times-circle exitsendcoin" />
                         </div>
                         <div className="card-body">
-                            <form>
-                            <div className="form-group">
-                                <label htmlFor="sendcoin">Coin</label>
-                                <input type="text" className="form-control form-control-sm" id="sendcoin" />
-                                <label className="txtinvalid">Input coin invalid</label>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="wallet">Wallet</label>
-                                <select className="form-control form-control-sm" id="wallet">
-                                    {wallets.map(wallet=>(
-                                        <option 
-                                            key={wallet.id}
-                                            className={wallet.id === wActive?"andi":""}
-                                        >
-                                            {wallet.name}
-                                        </option>                                       
-                                    ))}
-                                </select>
-                            </div>
-                            <button className="btn btn-block btn-success">Send</button>
+                            <p
+                                className={wallets.length === 1?"txtNoti":"andi"}
+                            >
+                                Unable to transfer because there is only one wallet
+                            </p>
+                            <form 
+                                className={wallets.length === 1?"andi":""} 
+                                onSubmit ={handleFormSendCoinSubmit}
+                            >
+                                <div className="form-group">
+                                    <label htmlFor="sendcoin">Coin</label>
+                                    <input 
+                                        type="text" 
+                                        className="form-control form-control-sm" 
+                                        id="sendcoin" 
+                                        onChange={handleChangeSendCoin}
+                                    />
+                                    <label className="txtinvalid">Input coin invalid</label>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="wallet">Wallet</label>
+                                    <select 
+                                        className="form-control form-control-sm"
+                                        id="wallet"
+                                        onChange={handleChangeIdSendCoin}
+                                    >
+                                        {wallets.map(wallet=>(
+                                            <option 
+                                                key={wallet.id}
+                                                value={wallet.id}
+                                                className={wallet.id === wActive?"andi":""}
+                                            >
+                                                {wallet.name}
+                                            </option>                                       
+                                        ))}
+                                    </select>
+                                </div>
+                                <button className="btn btn-block btn-success">Send</button>
                             </form>
                         </div>
                     </div>
@@ -133,7 +190,7 @@ function CardLeft(props) {
             <div className="card shadow mt-3">
                 <h5 className="card-header btnchangewallet" style={{cursor: 'pointer'}}>
                     Change Wallet 
-                    <i className="fas fa-exchange-alt ml-2" />
+                    <i className="fas fa-exchange-alt ml-3" />
                 </h5>
                 <div className="card-body cardchangewallet">
                     {wallets.map(wallet =>(
