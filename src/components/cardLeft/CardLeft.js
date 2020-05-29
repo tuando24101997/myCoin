@@ -108,6 +108,7 @@ function CardLeft(props) {
                             <form 
                                 className={wallets.length === 1?"andi":""} 
                                 onSubmit ={handleFormSendCoinSubmit}
+                                id="formsendcoin"
                             >
                                 <div className="form-group">
                                     <label htmlFor="sendcoin">Coin</label>
@@ -117,7 +118,6 @@ function CardLeft(props) {
                                         id="sendcoin" 
                                         onChange={handleChangeSendCoin}
                                     />
-                                    <label className="txtinvalid">Input coin invalid</label>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="wallet">Wallet</label>
@@ -137,6 +137,7 @@ function CardLeft(props) {
                                         ))}
                                     </select>
                                 </div>
+                                <label className="txtinvalid">Input invalid</label>
                                 <button className="btn btn-block btn-success">Send</button>
                             </form>
                         </div>
@@ -153,7 +154,7 @@ function CardLeft(props) {
                             </div>
                             <div>
                             <span style={{fontWeight: 'bold'}}>Coin Transferred: </span>
-                            <span style={{color: 'red', fontWeight: 'bold'}}>-{myWallet.recieved}</span>
+                            <span style={{color: 'red', fontWeight: 'bold'}}>{myWallet.recieved}</span>
                             </div>
                         </div>
                     </div>

@@ -9,11 +9,27 @@ document.addEventListener("DOMContentLoaded", function(){
     var cardview = document.getElementsByClassName('card-view')[0];
     const iconexit = document.getElementsByClassName('iconexit')[0];
 
+    const btncreatewallet = document.getElementsByClassName('btncreatewallet')[0];
+    const btnchangewallet = document.getElementsByClassName('btnchangewallet')[0];
+    const btnformcreatewallet = document.getElementsByClassName('btnformcreatewallet')[0];
+
+    var cardcreatewallet = document.getElementsByClassName('cardcreatewallet')[0];
+    var cardchangewallet = document.getElementsByClassName('cardchangewallet')[0];
+
+    var formcreatewallet = document.getElementsByClassName('formcreatewallet')[0];
+    formcreatewallet.onclick = () =>{
+        formcreatewallet.reset();
+    }
+
+
 
      // button click send coin
     sendcoin.onclick = () =>{
     	sendcoinform.classList.toggle('xuathien');
-    	cardview.classList.remove('xuathien');
+        cardview.classList.remove('xuathien');
+        cardchangewallet.classList.remove('xuathien');
+        cardcreatewallet.classList.remove('xuathien');
+        formcreatewallet.reset();
     }
     exitsendcoin.onclick = () =>{
     	sendcoinform.classList.remove('xuathien');
@@ -25,36 +41,38 @@ document.addEventListener("DOMContentLoaded", function(){
 
     btnview.onclick = () =>{
     	cardview.classList.toggle('xuathien');
-    	sendcoinform.classList.remove('xuathien');
+        sendcoinform.classList.remove('xuathien');
+        cardchangewallet.classList.remove('xuathien');
+        cardcreatewallet.classList.remove('xuathien');
+        formcreatewallet.reset();
+        document.getElementById('formsendcoin').reset();
     }
     iconexit.onclick = () =>{
     	cardview.classList.remove('xuathien');
     }
 
-    const btncreatewallet = document.getElementsByClassName('btncreatewallet')[0];
-    const btnchangewallet = document.getElementsByClassName('btnchangewallet')[0];
-    const btnformcreatewallet = document.getElementsByClassName('btnformcreatewallet')[0];
-
-    var cardcreatewallet = document.getElementsByClassName('cardcreatewallet')[0];
-    var cardchangewallet = document.getElementsByClassName('cardchangewallet')[0];
-
+    
+    
     btncreatewallet.onclick = () =>{
     	cardcreatewallet.classList.toggle('xuathien');
-    	cardchangewallet.classList.remove('xuathien');
+        cardchangewallet.classList.remove('xuathien');
+        cardview.classList.remove('xuathien');
+        sendcoinform.classList.remove('xuathien');
+        document.getElementById('formsendcoin').reset();
     }
 
     btnchangewallet.onclick = () =>{
     	cardchangewallet.classList.toggle('xuathien');
-    	cardcreatewallet.classList.remove('xuathien');
+        cardcreatewallet.classList.remove('xuathien');
+        cardview.classList.remove('xuathien');
+        sendcoinform.classList.remove('xuathien');
+        formcreatewallet.reset();
+        document.getElementById('formsendcoin').reset();
     }
 
     btnformcreatewallet.onclick = () =>{
         cardcreatewallet.classList.remove('xuathien');
     }
 
-    var formcreatewallet = document.getElementsByClassName('formcreatewallet')[0];
-    formcreatewallet.onclick = () =>{
-        formcreatewallet.reset();
-    }
-
+    
 })

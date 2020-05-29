@@ -63,8 +63,36 @@ function App() {
     setWallet(newWallet);
   }
 
+  function xuathiendiv(clName){
+    document.getElementsByClassName(clName)[0].classList.add('xuathien');
+  }
+
+  function xoabodiv(clName){
+    document.getElementsByClassName(clName)[0].classList.remove('xuathien');
+  }
+
+  function clearDataForm(id){
+    document.getElementById(id).reset();
+  }
+
   function getSendCoinWallet(value){
     console.log(value);
+    var newWallet = [...wallet];
+    var mycoin = newWallet[walletActive].coin;
+    if (value.id === walletActive || value.coin > mycoin || value.coin <= 0 || isNaN(value.coin) ){
+      console.log('invalid');
+      console.log(walletActive);
+      xuathiendiv('txtinvalid');
+    }
+    else{
+      newWallet[walletActive].coin = mycoin - value.coin;
+      newWallet[walletActive].recieved -= value.coin;
+      newWallet[value.id].coin = newWallet[value.id].coin + value.coin;
+      newWallet[value.id].transfer += value.coin;
+      clearDataForm('formsendcoin');
+      xoabodiv('card-send-coin')
+      console.log(newWallet);
+    }
   }
 
   return (
