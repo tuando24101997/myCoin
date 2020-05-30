@@ -190,3 +190,7 @@
 	color: red;
 	font-weight: 500;
 }
+
+.xuathientxtinvalid{
+	display: block;
+}

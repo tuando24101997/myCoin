@@ -59,9 +59,9 @@ function CardLeft(props) {
             id: Math.floor(idSend),
             coin: Math.floor(sendCoinForm)
         }
+        getSendCoin(formValue);
         setSendCointForm(0);
         setIdCoin(0);
-        getSendCoin(formValue)
     }
 
     return (

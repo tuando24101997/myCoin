@@ -76,22 +76,38 @@ function App() {
   }
 
   function getSendCoinWallet(value){
-    console.log(value);
     var newWallet = [...wallet];
     var mycoin = newWallet[walletActive].coin;
     if (value.id === walletActive || value.coin > mycoin || value.coin <= 0 || isNaN(value.coin) ){
-      console.log('invalid');
-      console.log(walletActive);
-      xuathiendiv('txtinvalid');
+      //xuathiendiv('txtinvalid');
+      document.getElementsByClassName('txtinvalid')[0].classList.add('xuathientxtinvalid');
+      //alert("Input coin invalid")
+      clearDataForm('formsendcoin');
     }
     else{
+      // add block to blockchain
+      const newId = block.length;
+      const iPrevHash = block[newId  - 1].hash;
+      var newListBlock = [...block];
+      const newData = newWallet[walletActive].name + " send to " + newWallet[value.id].name+ " " + value.coin + " Coin"
+      var newBlock = {
+        id: newId,
+        data: newData,
+        prevHash: iPrevHash,
+        hash: propOfWork(newId, iPrevHash),
+        name: "BLOCK #" + newId,
+      }
+      newListBlock.push(newBlock);
+      setBlock(newListBlock);
+
+      console.log(newBlock);
       newWallet[walletActive].coin = mycoin - value.coin;
       newWallet[walletActive].recieved -= value.coin;
       newWallet[value.id].coin = newWallet[value.id].coin + value.coin;
       newWallet[value.id].transfer += value.coin;
+      setWallet(newWallet);
       clearDataForm('formsendcoin');
-      xoabodiv('card-send-coin')
-      console.log(newWallet);
+      xoabodiv('card-send-coin');    
     }
   }
 

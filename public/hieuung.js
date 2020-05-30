@@ -30,9 +30,13 @@ document.addEventListener("DOMContentLoaded", function(){
         cardchangewallet.classList.remove('xuathien');
         cardcreatewallet.classList.remove('xuathien');
         formcreatewallet.reset();
+        document.getElementById('formsendcoin').reset();
+        document.getElementsByClassName('txtinvalid')[0].classList.remove('xuathientxtinvalid');
     }
     exitsendcoin.onclick = () =>{
-    	sendcoinform.classList.remove('xuathien');
+        sendcoinform.classList.remove('xuathien');
+        formcreatewallet.reset();
+        document.getElementById('formsendcoin').reset();
     }
 
 
