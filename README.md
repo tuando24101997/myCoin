@@ -12,15 +12,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-##Đồ án cá nhân chủ đề Blockchain
-#Xây dựng hệ thống tiền điện tử
+## Đồ án cá nhân chủ đề Blockchain
+# Xây dựng hệ thống tiền điện tử
 Tài liệu tham khảo: các slide và cái video bài giảng của giáo viên hướng dẫn về chủ đề này
 
-##Cài đặt module/dependency
-npm install 
+## Cài đặt module/dependency
+`npm install`
 
-##Chạy chương trình
-npm start
+## Chạy chương trình
+`npm start`
 
 ##Các chức năng của project
 Tạo ví
