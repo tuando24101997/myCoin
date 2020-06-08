@@ -1,6 +1,6 @@
 # Đồ án cá nhân chủ đề Blockchain
-Xây dựng hệ thống tiền điện tử
-## Tài liệu tham khảo: các slide và cái video bài giảng của giáo viên hướng dẫn về chủ đề này
+Xây dựng hệ thống tiền điện tử bằng công nghệ Blockchain
+### Tài liệu tham khảo: các slide và cái video bài giảng của giáo viên hướng dẫn về chủ đề này
 
 ## Cài đặt module/dependency
 `npm install`
