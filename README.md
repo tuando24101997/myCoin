@@ -1,7 +1,7 @@
 # Đồ án cá nhân chủ đề Blockchain
-Xây dựng hệ thống tiền điện tử bằng công nghệ Blockchain
-Tài liệu tham khảo: các slide và cái video bài giảng của giáo viên hướng dẫn về chủ đề này
-Đồ án được viết bằng framework ReactJS trên nền web
+Xây dựng hệ thống tiền điện tử bằng công nghệ Blockchain <br>
+- Tài liệu tham khảo: các slide và cái video bài giảng của giáo viên hướng dẫn về chủ đề này
+- Đồ án được viết bằng framework ReactJS trên nền web
 
 ## Cài đặt module/dependency
 `npm install`
