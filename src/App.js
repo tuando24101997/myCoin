@@ -120,6 +120,8 @@ function App() {
       var nameMiner = "Not available";
       if (idMiner !== -1 ){
         nameMiner = newWallet[idMiner].name;
+        newWallet[idMiner].coin += 1;
+        newWallet[idMiner].transfer += 1;
       }
       const newHistory = {
         id: Date.now(),
