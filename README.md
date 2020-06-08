@@ -12,17 +12,17 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-Đồ án cá nhân chủ đề Blockchain
-Xây dựng hệ thống tiền điện tử
+##Đồ án cá nhân chủ đề Blockchain
+#Xây dựng hệ thống tiền điện tử
 Tài liệu tham khảo: các slide và cái video bài giảng của giáo viên hướng dẫn về chủ đề này
 
-Cài đặt module/dependency
+##Cài đặt module/dependency
 npm install 
 
-Chạy chương trình
+##Chạy chương trình
 npm start
 
-Các chức năng của project
+##Các chức năng của project
 Tạo ví
 - Chỉ cần dùng tên là có thể tạo ra ví mới (không sử dụng username/passwork)
 - Ví khi mới tạo ra sẽ có trạng thái là disconnect và số coin là 0
