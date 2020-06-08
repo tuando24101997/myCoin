@@ -17,6 +17,18 @@ const propOfWork = (index, prevHash ) =>{
   }
 }
 
+const findMiner = (from, to, max) =>{
+  if (max <= 2 ){
+    return -1;
+  }
+  while(true){
+    const randomIndex = Math.floor(Math.random() * max);
+    if (randomIndex !== from && randomIndex !== to){
+      return randomIndex;
+    }
+  }
+}
+
 function App() {
 
   // Khai bao state Block
@@ -31,6 +43,9 @@ function App() {
   
   // Khai bao wallet active
   const [walletActive, setWalletActive] = useState(0);
+
+  // Khai báo lịch sử giao dịch 
+  const [history, setHistory] = useState([]); // from - to - coin - miner 
 
   // Function create wallet
   function getValueFormCreate(value){
@@ -63,10 +78,6 @@ function App() {
     setWallet(newWallet);
   }
 
-  function xuathiendiv(clName){
-    document.getElementsByClassName(clName)[0].classList.add('xuathien');
-  }
-
   function xoabodiv(clName){
     document.getElementsByClassName(clName)[0].classList.remove('xuathien');
   }
@@ -79,9 +90,7 @@ function App() {
     var newWallet = [...wallet];
     var mycoin = newWallet[walletActive].coin;
     if (value.id === walletActive || value.coin > mycoin || value.coin <= 0 || isNaN(value.coin) ){
-      //xuathiendiv('txtinvalid');
       document.getElementsByClassName('txtinvalid')[0].classList.add('xuathientxtinvalid');
-      //alert("Input coin invalid")
       clearDataForm('formsendcoin');
     }
     else{
@@ -100,11 +109,29 @@ function App() {
       newListBlock.push(newBlock);
       setBlock(newListBlock);
 
-      console.log(newBlock);
+      // change coin in wallet
       newWallet[walletActive].coin = mycoin - value.coin;
       newWallet[walletActive].recieved -= value.coin;
       newWallet[value.id].coin = newWallet[value.id].coin + value.coin;
       newWallet[value.id].transfer += value.coin;
+
+      // find miner
+      const idMiner = findMiner(value.id, walletActive, newWallet.length);
+      var nameMiner = "Not available";
+      if (idMiner !== -1 ){
+        nameMiner = newWallet[idMiner].name;
+      }
+      const newHistory = {
+        id: Date.now(),
+        to: newWallet[value.id].name,
+        from: newWallet[walletActive].name,
+        coin: value.coin,
+        miner: nameMiner
+      }
+      // add history in list history
+      var newListHistory = [...history];
+      newListHistory.push(newHistory);
+      setHistory(newListHistory);
       setWallet(newWallet);
       clearDataForm('formsendcoin');
       xoabodiv('card-send-coin');    
@@ -126,7 +153,11 @@ function App() {
               getStatus={getStatusWallet}
               getSendCoin={getSendCoinWallet}
             />
-            <CardRight blocks={block} wActive={wallet[walletActive]} />
+            <CardRight 
+              blocks={block} 
+              wActive={wallet[walletActive]}
+              historys={history} 
+            />
           </div>
         </div>
       </div>

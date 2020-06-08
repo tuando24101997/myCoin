@@ -4,7 +4,7 @@ import React from 'react';
 function Block(props) {
     const {data, hash, prevHash, name} = props;
     return (
-        <div className="card block-content shadow-sm mt-2">
+        <div className="card block-content shadow-sm mb-2">
             <div className="card-body">
                 <div className="blockdata">
                     <span className="blockdata-name">DATA</span>
